@@ -1,10 +1,6 @@
 <template>
   <div class="containter">
-    <div class="header">
-      <h1>VUE Weather App</h1>
-
-      <div class="header-right">
-        <input
+    <div class="switch"><input
           @change="$emit('dark')"
           v-model="darkMode"
           type="checkbox"
@@ -12,8 +8,11 @@
           class="toggle--checkbox"
         />
         <label for="toggle" class="toggle--label"></label>
-        <div class="background"></div>
-      </div>
+        <div class="background"></div></div>
+
+    <div class="header">
+      <h1>Vueather</h1>
+
     </div>
 
     <b-input-group class="input">
@@ -25,6 +24,8 @@
         type="text"
         placeholder="Search for location"
         style="border:none"
+        v-model="search"
+        @input="getCity()"
         :style="[darkMode ? styles.dark : '']"
       />
       <button :style="[darkMode ? styles.dark : '']" @click="getLocation" class="inputpre">
@@ -33,7 +34,20 @@
     </b-input-group>
 
     <div v-if="showCard" class="results">
-      <div :style="[darkMode ? styles.dark : '']" class="card-1"></div>
+      <div :style="[darkMode ? styles.dark : {color:'black'}]" class="card-1">
+        <h2>Current Weather</h2>
+        
+        <div class="cards">
+          <div class="bigCart">
+            {{sevenDay}}
+          </div>
+          <div class="detailCard">dsasad</div>
+
+        </div>
+
+
+
+      </div>
 
       <div :style="[darkMode ? styles.dark : '']" class="card-2">dsadsa</div>
     </div>
@@ -51,11 +65,13 @@ export default {
       darkMode: false,
       showCard: false,
       sevenDay: [],
+      city: '',
+      search: '',
       lat: '',
       lon: '',
 
       styles: {
-        dark: { backgroundColor: '#235479', border: 'none', color: '#4085b9' }
+        dark: { backgroundColor: '#72ABDC', border: 'none', color: 'white' }
       }
     }
   },
@@ -63,9 +79,25 @@ export default {
     getSevenDay(data) {
       axios(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=+${data.coords.latitude}&lon=${data.coords.longitude}&appid=20571ab45c74dc2a1897b60c5b8047a1`)
         .then(response => {
-          this.sevenDay = response.body.list;
-          console.log(this.sevenDay);
+          this.sevenDay = response.data;
+   
         })
+    },
+
+    getCity( ) {
+    
+       axios('https://places-dsn.algolia.net/1/places/query', {
+        query: {
+          query: this.search,
+          language: 'en',
+          type: 'city'
+
+        }
+      }).then(response => {
+        console.log(response.data);
+      })
+  
+
     },
 
     getLocation() {
@@ -114,6 +146,15 @@ export default {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
+}
+
+
+.cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 30px;
 }
 </style>
  

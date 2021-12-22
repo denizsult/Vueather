@@ -22,7 +22,7 @@ export default {
   width: 100vw;
   background-image: url("./assets/bg.png");
   background-size: cover;
-  color:black !important
+   color:white !important;
 }
 
 .appDark {
@@ -30,7 +30,7 @@ export default {
   width: 100vw;
   background-image: url("./assets/bg-dark.png");
   background-size: cover;
-  color:white !important;
+   color:white !important;
  
 }
 </style>

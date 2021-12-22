@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Weather';
+  src: url('../fonts/weather.ttf');
+}
+
 .containter {
     height: 100%;
     display: flex;
@@ -34,8 +39,16 @@
     align-items: center;
     width: 90%;
     padding-bottom: 20px;
+  
+    font-family: 'weather';
   }
   
+
+  .header > h1 {
+    font-size: calc(2.500rem + 1.5vw)
+
+
+  }
   .inputpre {
     height: 50px;
     background: white;
@@ -43,6 +56,12 @@
     border: none;
     border-radius: 20px;
     position: relative;
+  }
+  .switch{
+    position: absolute;
+    top: 50px;
+    right: 100px;
+
   }
   
    
