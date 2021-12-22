@@ -5,6 +5,7 @@
 
 .containter {
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +13,7 @@
   }
   
   .input {
-    width: 90% !important;
+    width: 100% !important;
     height: 50px;
     border: none;
     box-shadow: none;
@@ -29,13 +30,13 @@
   }
 
    
-  
+
   .header {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 90%;
-    padding-bottom: 20px;
+   
 
     font-family: 'weather';
   }
@@ -43,9 +44,8 @@
 
   .header > h1 {
     font-size: calc(2.500rem + 1.5vw)
-
-
   }
+
   .inputpre {
     height: 50px;
     background: white;
@@ -56,8 +56,9 @@
   }
   .switch{
     position: absolute;
-    top: 50px;
+    top: 30px;
     right: 100px;
+   
 
   }
   
@@ -192,7 +193,7 @@
   }
   @keyframes reverse {
     0% {
-      left: 60px;
+      left: 20px;
       width: 82px;
     }
     60% {
@@ -203,8 +204,4 @@
       left: 5px;
     }
   }
-
-  ::placeholder {
-    color: #5a89b2;
-    opacity: 1; /* Firefox */
-  }
+ 

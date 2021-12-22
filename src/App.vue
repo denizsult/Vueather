@@ -1,15 +1,22 @@
 <template>
-  <div :class="dark ? 'appDark' : 'app'" id="app">
-    <router-view @dark="dark = !dark" />
+  <div :class="darkMode ? 'appDark' : 'app'" id="app">
+    <router-view @dark="darkMode = !darkMode" />
   </div>
 </template>
 
 <script>
+import {themeConfig} from './EventBus'
 export default {
   data() {
     return {
-      dark: false,
+      darkMode: false,
     }
+  },
+
+  mounted() {
+    themeConfig.$on('dark', (data) => {
+      this.darkMode = data
+    })
   },
 }
 
@@ -22,15 +29,14 @@ export default {
   width: 100vw;
   background-image: url("./assets/bg.png");
   background-size: cover;
-   color:white !important;
+  color:white !important;
 }
 
 .appDark {
-  height: 100vh;
+    height: 100vh;
   width: 100vw;
-  background-image: url("./assets/bg-dark.png");
+  background-image: url("./assets/bg-dark.png") !important;
   background-size: cover;
-   color:white !important;
- 
+  color:white !important;
 }
 </style>
