@@ -21,17 +21,14 @@
     align-items: center;
   }
   
-  .input > input {
-    width: 60%;
-    border: 1px solid white;
-    padding-left: 10px;
+ .vselect {
+    width: 50%;
+    border: none !important;
     font-weight: 700;
-    height: 50px;
+    border-radius: 0 !important;
   }
-  
-  input:focus {
-    outline: none;
-  }
+
+   
   
   .header {
     display: flex;
@@ -39,7 +36,7 @@
     align-items: center;
     width: 90%;
     padding-bottom: 20px;
-  
+
     font-family: 'weather';
   }
   
