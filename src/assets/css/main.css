@@ -55,9 +55,9 @@
     position: relative;
   }
   .switch{
-    position: absolute;
+   margin:10px;
     top: 30px;
-    right: 100px;
+ 
    
 
   }

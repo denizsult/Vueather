@@ -1,7 +1,7 @@
 <template>
   <div class="results">
     <div :style="[darkMode ? $store.state.dark : { color: 'black' }]" class="card-1">
-      <h3>Current Weather</h3>
+      <h3 style="display:inline">Current Weather</h3>
 
       <div class="cards">
         <div class="bigCard">
