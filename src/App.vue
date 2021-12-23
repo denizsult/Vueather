@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {themeConfig} from './EventBus'
+import { themeConfig } from './EventBus'
 export default {
   data() {
     return {
@@ -25,18 +25,22 @@ export default {
 <style>
 @import "./assets/css/main.css";
 .app {
-  height: 100vh;
-  width: 100vw;
+  height: 120vh;
+
+  width: 100%;
   background-image: url("./assets/bg.png");
   background-size: cover;
-  color:white !important;
+  color: white !important;
 }
 
 .appDark {
-    height: 100vh;
-  width: 100vw;
+  width: 100%;
+  height: 120vh;
+
   background-image: url("./assets/bg-dark.png") !important;
   background-size: cover;
-  color:white !important;
+  color: white !important;
 }
+
+
 </style>

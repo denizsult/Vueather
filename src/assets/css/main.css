@@ -3,205 +3,229 @@
   src: url('../fonts/weather.ttf');
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap');
+
+body {
+  font-family: Poppins !important;
+
+  font-weight: 100;
+  color:rgb(74, 111, 161) !important;
+
+}
+
 .containter {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .input {
-    width: 100% !important;
-    height: 50px;
-    border: none;
-    box-shadow: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
- .vselect {
-    width: 50%;
-    border: none !important;
-    font-weight: 700;
-    border-radius: 0 !important;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100% !important;
+  height: 50px;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vselect {
+  width: 50%;
+  border: none !important;
+  font-weight: 700;
+  border-radius: 0 !important;
+}
+
+
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  font-family: 'weather';
+}
+
+
+.header>h1 {
+  font-size: calc(2.500rem + 1.5vw)
+}
+
+.inputpre {
+  height: 50px;
+  background: white;
+  width: 60px;
+  border: none;
+  border-radius: 20px;
+  position: relative;
+}
+
+.switch {
+  margin: 10px;
+  top: 30px;
+
+
+
+}
+
+
+
+:root {
+  /** sunny side **/
+  --blue-background: #c2e9f6;
+  --blue-border: #72cce3;
+  --blue-color: #96dcee;
+  --yellow-background: #fffaa8;
+  --yellow-border: #f5eb71;
+  /** dark side **/
+  --indigo-background: #808fc7;
+  --indigo-border: #5d6baa;
+  --indigo-color: #6b7abb;
+  --gray-border: #e8e8ea;
+  --gray-dots: #e8e8ea;
+  /** general **/
+  --white: #fff;
+}
+
+.toggle--checkbox {
+  display: none;
+}
+
+.toggle--checkbox:checked {
+  /** This will all flip from sun to moon **/
+  /** Change the label color **/
+}
+
+.toggle--checkbox:checked~.background {
+  background: var(--indigo-background);
+}
+
+.toggle--checkbox:checked+.toggle--label {
+  background: var(--indigo-color);
+  border-color: var(--indigo-border);
+  /** Change the cloud to stars **/
+  /** Change the sun into the moon **/
+  /** Show the dimples on the moon **/
+}
+
+.toggle--checkbox:checked+.toggle--label .toggle--label-background {
+  left: 90px;
+  width: 5px;
+}
+
+.toggle--checkbox:checked+.toggle--label .toggle--label-background:before {
+  width: 5px;
+  height: 5px;
+  top: -25px;
+}
+
+.toggle--checkbox:checked+.toggle--label .toggle--label-background:after {
+  width: 5px;
+  height: 5px;
+  left: -30px;
+  top: 20px;
+}
+
+.toggle--checkbox:checked+.toggle--label:before {
+  background: var(--white);
+  border-color: var(--gray-border);
+  animation-name: switch;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+}
+
+.toggle--checkbox:checked+.toggle--label:after {
+  transition-delay: 350ms;
+  opacity: 1;
+}
+
+.toggle--label {
+  /** Placeholder element, starting at blue **/
+  width: 130px;
+  height: 50px;
+  background: var(--blue-color);
+  border-radius: 100px;
+  border: 5px solid var(--blue-border);
+  display: flex;
+  position: relative;
+  transition: all 350ms ease-in;
+  /** The sun cloud and moon stars **/
+  /** Sun/Moon element **/
+  /** Gray dots on the moon **/
+}
+
+.toggle--label-background {
+  width: 10px;
+  height: 5px;
+  border-radius: 5px;
+  position: relative;
+  background: var(--white);
+  left: 135px;
+  top: 45px;
+  transition: all 150ms ease-in;
+}
+
+
+.toggle--label:before {
+  animation-name: reverse;
+  animation-duration: 350ms;
+  animation-fill-mode: forwards;
+  transition: all 350ms ease-in;
+  content: "";
+  width: 30px;
+  height: 30px;
+  border: 5px solid var(--yellow-border);
+  top: 5px;
+  position: absolute;
+  border-radius: 82px;
+  background: var(--yellow-background);
+}
+
+.toggle--label:after {
+  transition-delay: 0ms;
+  transition: all 250ms ease-in;
+  position: absolute;
+  content: "";
+  left: 160px;
+  top: 10px;
+  width: 20px;
+  height: 30px;
+  background: transparent;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+@keyframes switch {
+  0% {
+    left: 5px;
   }
 
-   
-
-  .header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 90%;
-   
-
-    font-family: 'weather';
-  }
-  
-
-  .header > h1 {
-    font-size: calc(2.500rem + 1.5vw)
+  60% {
+    left: 10px;
+    width: 112px;
   }
 
-  .inputpre {
-    height: 50px;
-    background: white;
-    width: 60px;
-    border: none;
-    border-radius: 20px;
-    position: relative;
+  100% {
+    left: 80px;
+    width: 35px;
   }
-  .switch{
-   margin:10px;
-    top: 30px;
- 
-   
+}
 
+@keyframes reverse {
+  0% {
+    left: 20px;
+    width: 82px;
   }
-  
-   
-  
-  :root {
-    /** sunny side **/
-    --blue-background: #c2e9f6;
-    --blue-border: #72cce3;
-    --blue-color: #96dcee;
-    --yellow-background: #fffaa8;
-    --yellow-border: #f5eb71;
-    /** dark side **/
-    --indigo-background: #808fc7;
-    --indigo-border: #5d6baa;
-    --indigo-color: #6b7abb;
-    --gray-border: #e8e8ea;
-    --gray-dots: #e8e8ea;
-    /** general **/
-    --white: #fff;
+
+  60% {
+    left: 10px;
+    width: 112px;
   }
-  
-  .toggle--checkbox {
-    display: none;
+
+  100% {
+    left: 5px;
   }
-  .toggle--checkbox:checked {
-    /** This will all flip from sun to moon **/
-    /** Change the label color **/
-  }
-  .toggle--checkbox:checked ~ .background {
-    background: var(--indigo-background);
-  }
-  .toggle--checkbox:checked + .toggle--label {
-    background: var(--indigo-color);
-    border-color: var(--indigo-border);
-    /** Change the cloud to stars **/
-    /** Change the sun into the moon **/
-    /** Show the dimples on the moon **/
-  }
-  .toggle--checkbox:checked + .toggle--label .toggle--label-background {
-    left: 90px;
-    width: 5px;
-  }
-  .toggle--checkbox:checked + .toggle--label .toggle--label-background:before {
-    width: 5px;
-    height: 5px;
-    top: -25px;
-  }
-  .toggle--checkbox:checked + .toggle--label .toggle--label-background:after {
-    width: 5px;
-    height: 5px;
-    left: -30px;
-    top: 20px;
-  }
-  .toggle--checkbox:checked + .toggle--label:before {
-    background: var(--white);
-    border-color: var(--gray-border);
-    animation-name: switch;
-    animation-duration: 350ms;
-    animation-fill-mode: forwards;
-  }
-  .toggle--checkbox:checked + .toggle--label:after {
-    transition-delay: 350ms;
-    opacity: 1;
-  }
-  .toggle--label {
-    /** Placeholder element, starting at blue **/
-    width: 130px;
-    height: 50px;
-    background: var(--blue-color);
-    border-radius: 100px;
-    border: 5px solid var(--blue-border);
-    display: flex;
-    position: relative;
-    transition: all 350ms ease-in;
-    /** The sun cloud and moon stars **/
-    /** Sun/Moon element **/
-    /** Gray dots on the moon **/
-  }
-  .toggle--label-background {
-    width: 10px;
-    height: 5px;
-    border-radius: 5px;
-    position: relative;
-    background: var(--white);
-    left: 135px;
-    top: 45px;
-    transition: all 150ms ease-in;
-  }
-  
-  
-  .toggle--label:before {
-    animation-name: reverse;
-    animation-duration: 350ms;
-    animation-fill-mode: forwards;
-    transition: all 350ms ease-in;
-    content: "";
-    width: 30px;
-    height: 30px;
-    border: 5px solid var(--yellow-border);
-    top: 5px;
-    position: absolute;
-    border-radius: 82px;
-    background: var(--yellow-background);
-  }
-  .toggle--label:after {
-    transition-delay: 0ms;
-    transition: all 250ms ease-in;
-    position: absolute;
-    content: "";
-    left: 160px;
-    top: 10px;
-    width: 20px;
-    height: 30px;
-    background: transparent;
-    border-radius: 50%;
-    opacity: 0;
-  }
-  
-  @keyframes switch {
-    0% {
-      left: 5px;
-    }
-    60% {
-      left: 10px;
-      width: 112px;
-    }
-    100% {
-      left: 80px;
-      width: 35px;
-    }
-  }
-  @keyframes reverse {
-    0% {
-      left: 20px;
-      width: 82px;
-    }
-    60% {
-      left: 10px;
-      width: 112px;
-    }
-    100% {
-      left: 5px;
-    }
-  }
- 
+}

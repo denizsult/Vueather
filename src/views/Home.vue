@@ -14,18 +14,16 @@
       <div class="background"></div>
     </div>
 
+
     <div class="header">
       <h1>Vueather</h1>
     </div>
 
+
+
     <Search @showCards="showCard = true"   @daily="getDaily"  @seven="getSeven"    />
 
-
     <Cards :daily="dailyData" :seven="sevenData"  v-if="showCard" /> 
-
-
-
-
 
     
   </div>
@@ -35,6 +33,8 @@
 import Cards from '../components/cards.vue'
 import Search from '../components/search.vue'
 import {themeConfig} from '../EventBus'
+
+
 export default {
     name: "Home",
     components: { Cards, Search },
@@ -51,14 +51,11 @@ export default {
       modeChange() {
         themeConfig.$emit('dark', this.darkMode)
       },
-
       getDaily(data){
-         
         this.dailyData = data
       },
 
        getSeven(data){
-         
         this.sevenData = data
       }
        

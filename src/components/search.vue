@@ -10,7 +10,7 @@
                 placeholder="Search for location"
                 style="border:none"
                 v-model="selectedCity"
-                @input="$emit('showCards'), weatherLocation()"
+                @input="weatherLocation()"
                 @search="onSearch"
                 :options="cities"
                 label="name"
@@ -40,6 +40,7 @@
 <script>
 import axios from 'axios'
 import { themeConfig } from '../EventBus'
+
 export default {
 
     data() {
@@ -63,7 +64,11 @@ export default {
 
 
     methods: {
+
+        // City Search
+
         onSearch(search, loading) {
+            this.cities = [];
             if (search.length) {
                 loading(true);
                 this.search(loading, search, this);
@@ -93,40 +98,39 @@ export default {
         //With Select
 
         async weatherLocation() {
-            let city = this.selectedCity.toLowerCase();
+            let city = this.selectedCity;
 
 
-            await axios(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res)=>{
+            await axios(`https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=metric&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res) => {
                 this.$emit('seven', res.data)
 
             })
-            await axios(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res)=>{
+            await axios(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res) => {
                 this.$emit('daily', res.data)
             })
+            this.$emit('showCards');
 
 
         },
 
-
-
-
-
-
-        //Geolocation
+        //With Geolocation
 
         async getGeolocation(data) {
-            await axios(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${data.coords.latitude}&lon=${data.coords.longitude}&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res) => {
+            await axios(`https://api.openweathermap.org/data/2.5/forecast/daily?lat=${data.coords.latitude}&lon=${data.coords.longitude}&units=metric&appid=20571ab45c74dc2a1897b60c5b8047a1`).then((res) => {
                 this.$emit('seven', res.data)
             });
 
-            await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${data.coords.latitude}&lon=${data.coords.longitude}&appid=20571ab45c74dc2a1897b60c5b8047a1`)
+            await axios(`https://api.openweathermap.org/data/2.5/weather?lat=${data.coords.latitude}&lon=${data.coords.longitude}&units=metric&appid=20571ab45c74dc2a1897b60c5b8047a1`)
                 .then((res) => {
                     this.$emit('daily', res.data)
                 })
+
+            this.$emit('showCards');
+
         },
 
 
-
+        // Get User Location 
         getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(data => {
