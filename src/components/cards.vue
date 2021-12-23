@@ -11,7 +11,6 @@
             <img
               :src="require(`../assets/weater_elements/${weathers[daily.weather[0].main]}.svg`)"
               width="220px"
-             
               alt
             />
 
@@ -38,13 +37,35 @@
           </h3>
           <h3>
             <img src="../assets/weater_elements/wind.png" alt />
-            {{ daily.wind.speed }} kmh
+            {{ daily.wind.speed }} km/h
           </h3>
         </div>
       </div>
     </div>
 
-    <div :style="[darkMode ? $store.state.dark : { color: 'black' }]" class="card-2"></div>
+    <div :style="[darkMode ? $store.state.dark : { color: 'black' }]" class="card-2">
+      <div class="days">
+        <p v-for="i in daysIndex" :key="i">
+          {{
+            days[i].slice(0, 3)
+          }}
+        </p>
+      </div>
+
+      <div class="daysDetail">
+        <span style="display:flex; flex-direction:column; align-items:center " v-for="data in seven.list" :key="data">
+          <img
+            :src="require(`../assets/weater_elements/${weathers[data.weather[0].main]}.svg`)"
+            width="100px"
+            alt
+          />
+
+          <p>
+            {{ parseInt(data.temp.day) }}° / {{ parseInt(data.temp.night) }}°
+          </p>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -59,7 +80,7 @@ export default {
   props: ['daily', 'seven'],
   data() {
     return {
-      sevenDay: [],
+
       darkMode: false,
       showCard: false,
       weathers: {
@@ -69,8 +90,11 @@ export default {
         Clear: "sunny",
         Thunderstorm: "thunder",
       },
+      days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      daysIndex: [],
 
-      daysInWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+
 
     };
   },
@@ -78,7 +102,25 @@ export default {
     themeConfig.$on('dark', (data) => {
       this.darkMode = data
     })
+
+    var currentDate = new Date();
+    var nextWeek = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+    var days = []
+    while (currentDate <= nextWeek) {
+      days.push(new Date(currentDate).getDay());
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    this.daysIndex = days.slice(1);
+
+
+
+
+
+
   },
+
+
+
 
 
 }
@@ -104,7 +146,6 @@ export default {
 }
 .card-1 {
   width: 100%;
-
   background-color: white;
   border-radius: 10px;
   margin-top: 20px;
@@ -116,7 +157,7 @@ export default {
   flex-direction: column;
   align-items: center;
 }
-.todayDetails{
+.todayDetails {
   display: flex;
   margin-top: 30px;
   flex-direction: column;
@@ -137,6 +178,25 @@ export default {
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  overflow: auto;
+}
+.days {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 23px;
+}
+.daysDetail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+    font-size: 23px;
+
 }
 </style>
  
