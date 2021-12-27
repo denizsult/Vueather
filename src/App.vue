@@ -25,22 +25,22 @@ export default {
 <style>
 @import "./assets/css/main.css";
 .app {
-  height: 120vh;
-
-  width: 100%;
-  background-image: url("./assets/bg.png");
+  min-height: 100vh;
+  height: 100%;
+  background-image: url("./assets/bg.png") !important;
   background-size: cover;
+  width: 100%;
+
+
   color: white !important;
 }
 
 .appDark {
   width: 100%;
-  height: 120vh;
-
+  min-height: 100vh;
+  height: 100%;
   background-image: url("./assets/bg-dark.png") !important;
   background-size: cover;
   color: white !important;
 }
-
-
 </style>

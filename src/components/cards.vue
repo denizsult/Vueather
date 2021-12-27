@@ -44,33 +44,30 @@
     </div>
 
     <div :style="[darkMode ? $store.state.dark : { color: 'black' }]" class="card-2">
-      <div class="days">
-        <p v-for="i in daysIndex" :key="i">
-          {{
-            days[i].slice(0, 3)
-          }}
-        </p>
-      </div>
-
       <div class="daysDetail">
-        <span style="display:flex; flex-direction:column; align-items:center " v-for="data in seven.list" :key="data">
+        <span
+          style="display:flex; flex-direction:column; align-items:center "
+          v-for="(data, index) in seven.list"
+          :key="data"
+        >
+          <p>
+            {{
+              days[index].slice(0, 3)
+            }}
+          </p>
+
           <img
             :src="require(`../assets/weater_elements/${weathers[data.weather[0].main]}.svg`)"
             width="100px"
             alt
           />
-
-          <p>
-            {{ parseInt(data.temp.day) }}° / {{ parseInt(data.temp.night) }}°
-          </p>
+          <p>{{ data.weather[0].main }}</p>
+          <p>{{ parseInt(data.temp.day) }}° / {{ parseInt(data.temp.night) }}°</p>
         </span>
       </div>
     </div>
   </div>
 </template>
-
-
-
 
 
 <script>
@@ -93,9 +90,6 @@ export default {
       days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
       daysIndex: [],
 
-
-
-
     };
   },
   mounted() {
@@ -112,16 +106,7 @@ export default {
     }
     this.daysIndex = days.slice(1);
 
-
-
-
-
-
   },
-
-
-
-
 
 }
 </script>
@@ -132,7 +117,6 @@ export default {
   display: flex;
   flex-direction: column;
   width: 60vw !important;
-  height: 100%;
 }
 
 .cards {
@@ -173,7 +157,7 @@ export default {
 }
 .card-2 {
   width: 100%;
-  height: 30%;
+  height: 300px;
   background-color: white;
   border-radius: 10px;
   margin-top: 20px;
@@ -195,8 +179,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-    font-size: 23px;
-
+  font-size: 23px;
 }
 </style>
  

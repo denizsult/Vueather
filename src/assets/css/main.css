@@ -7,15 +7,16 @@
 
 body {
   font-family: Poppins !important;
-
   font-weight: 100;
   color:rgb(74, 111, 161) !important;
 
 }
 
 .containter {
-  height: 100%;
-  width: 100%;
+ 
+ padding: 30px 0px;
+
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,6 +102,7 @@ body {
 
 .toggle--checkbox:checked~.background {
   background: var(--indigo-background);
+  
 }
 
 .toggle--checkbox:checked+.toggle--label {
