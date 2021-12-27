@@ -44,18 +44,17 @@
     </div>
 
     <div :style="[darkMode ? $store.state.dark : { color: 'black' }]" class="card-2">
+     
+
       <div class="daysDetail">
         <span
-          style="display:flex; flex-direction:column; align-items:center "
-          v-for="(data, index) in seven.list"
+          style="display:flex; flex-direction:column; align-items:center; padding-left:10px"
+          v-for="data in seven.list"
           :key="data"
         >
-          <p>
-            {{
-              days[index].slice(0, 3)
-            }}
-          </p>
-
+        <p>
+          {{data.day}}
+        </p>
           <img
             :src="require(`../assets/weater_elements/${weathers[data.weather[0].main]}.svg`)"
             width="100px"
@@ -104,11 +103,24 @@ export default {
       days.push(new Date(currentDate).getDay());
       currentDate.setDate(currentDate.getDate() + 1);
     }
+
+
     this.daysIndex = days.slice(1);
 
   },
+watch:{
+  seven:function(){
+     for (let i = 0; i < this.daysIndex.length; i++) {
+       this.seven.list[i].day = this.days[this.daysIndex[i]]
+
+    }
+  
+  }
+}
+  
 
 }
+
 </script>
 
 
@@ -117,6 +129,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 60vw !important;
+ 
 }
 
 .cards {
@@ -180,6 +193,13 @@ export default {
   align-items: center;
   justify-content: space-around;
   font-size: 23px;
+}
+
+@media (max-width: 1300px) {
+    .card-2{
+      align-items: baseline;
+    }
+  
 }
 </style>
  
