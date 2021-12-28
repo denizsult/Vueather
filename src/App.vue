@@ -29,7 +29,7 @@ export default {
   height: 100%;
   background-image: url("./assets/bg.png") !important;
   background-size: cover;
-  width: 100%;
+  
 
 
   color: white !important;

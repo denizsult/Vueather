@@ -199,6 +199,9 @@ watch:{
     .card-2{
       align-items: baseline;
     }
+    .results{
+      width: 90vw !important;
+    }
   
 }
 </style>
